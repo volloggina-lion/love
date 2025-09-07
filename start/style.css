@@ -1,0 +1,141 @@
+body {
+    font-family: "Inter", sans-serif;
+    background: #0f172a;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.rating-container {
+    text-align: center;
+    padding: 24px;
+    background: #1e293b;
+    border-radius: 16px;
+    width: 280px;
+}
+
+.stars {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.stars button {
+    font-size: 36px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #555;
+    transition: transform 0.2s, color 0.2s;
+    padding: 0;
+}
+
+.stars button.hover,
+.stars button.selected {
+    color: #facc15;
+    transform: scale(1.2);
+}
+
+.rating-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: #facc15;
+    min-height: 24px;
+}
+
+
+
+.card {
+    perspective: 1000px;
+    width: 300px;
+    height: 250px;
+    margin: 50px auto;
+    cursor: pointer;
+}
+
+.inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+    box-shadow: 0 15px 35px rgba(117, 75, 202, 0.618);
+    border-radius: 20px;
+}
+
+.card:hover .inner {
+    transform: rotateY(180deg) scale(1.05);
+}
+
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-family: Courier, monospace;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.front {
+    background: linear-gradient(135deg, #ff6bbabf, #c45050bb);
+    color: rgb(14, 13, 13);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    border: 5px solid #fff;
+    box-shadow: inset 0 0 20px rgba(47, 17, 200, 0.771);
+}
+
+.back {
+    background: linear-gradient(135deg, #ffdf28, #db7561e3);
+    color: rgb(0, 0, 0);
+    transform: rotateY(180deg);
+    border: 5px solid #fff;
+    box-shadow: inset 0 0 20px rgba(173, 96, 84, 0.862);
+    flex-direction: column;
+    gap: 15px;
+}
+
+.back::before {
+    content: "💗";
+    font-size: 40px;
+    animation: sparkle 2s infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.card:hover {
+    animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.front::after {
+    content: "💤 Наведи на меня!";
+    position: absolute;
+    bottom: 10px;
+    font-size: 12px;
+    opacity: 0.7;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
